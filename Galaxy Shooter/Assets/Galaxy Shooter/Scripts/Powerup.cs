@@ -6,7 +6,8 @@ public class Powerup : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3.0f;
-
+    [SerializeField]
+    private int powerupID;  // 0 = tripleshot, 1 = speedboost, 2 = shields
 
     // Update is called once per frame
     void Update ()
@@ -22,9 +23,23 @@ public class Powerup : MonoBehaviour
 
             if (player != null)
             {
-                player.TripleShotPowerupOn();
+                
+                if (powerupID == 0)
+                {
+                    //enable tripleshot
+                    player.TripleShotPowerupOn();
+                }
+                else if (powerupID == 1)
+                {
+                    //enable speedboost
+                    player.SpeedboostPowerupOn();
+                }
+                else if (powerupID == 2)
+                {
+                    //enable shields
+                }
             }
-
+            
             Destroy(this.gameObject);
 
         }

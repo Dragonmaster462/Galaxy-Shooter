@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public bool canTripleShot = false;
+    public bool isSpeedboostActive = false;
 
     [SerializeField]
     private GameObject _laserPrefab;
@@ -59,8 +60,16 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.right * _speed * horizontalInput * Time.deltaTime);
-        transform.Translate(Vector3.up * _speed * verticalInput * Time.deltaTime);
+        if (isSpeedboostActive)
+        {
+            transform.Translate(Vector3.right * _speed * horizontalInput * 1.5f * Time.deltaTime);
+            transform.Translate(Vector3.up * _speed * verticalInput * 1.5f * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector3.right * _speed * horizontalInput * Time.deltaTime);
+            transform.Translate(Vector3.up * _speed * verticalInput * Time.deltaTime);
+        }
 
         if (transform.position.y > 0)
         {
@@ -91,5 +100,17 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         canTripleShot = false;
+    }
+
+    public void SpeedboostPowerupOn()
+    {
+        isSpeedboostActive = true;
+        StartCoroutine(SpeedboostPowerDownRoutine());
+    }
+
+    public IEnumerator SpeedboostPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        isSpeedboostActive = false;
     }
 }
