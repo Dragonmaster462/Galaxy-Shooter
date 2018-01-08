@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 5.0f;
 
+    [SerializeField]
+    private int _lives = 3;
 
 	// Use this for initialization
 	void Start ()
@@ -112,5 +114,15 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         isSpeedboostActive = false;
+    }
+
+    public void Damage()
+    {
+        _lives--;
+
+        if (_lives < 1 )
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
