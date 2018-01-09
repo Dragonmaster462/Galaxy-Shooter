@@ -7,6 +7,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private float _speed = 3.0f;
 
+    [SerializeField]
+    private GameObject _enemyExplosionAnimation;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -36,17 +39,22 @@ public class EnemyAI : MonoBehaviour
                 player.Damage();
             }
 
+            Instantiate(_enemyExplosionAnimation, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
 
         }
         else if(other.tag =="Laser")
-        {        
-            Destroy(this.gameObject);
+        {      
+
             if (other.transform.parent != null)
             {
                 Destroy(other.transform.parent.gameObject);
             }
             Destroy(other.gameObject);
+
+            Instantiate(_enemyExplosionAnimation, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+
         }
     }
 }

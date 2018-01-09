@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     private GameObject _laserPrefab;
     [SerializeField]
     private GameObject _tripleShotPrefab;
+    [SerializeField]
+    private GameObject _explosionAnimation;
 
     [SerializeField]
     private float _fireRate = 0.25f;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private int _lives = 3;
+
 
 	// Use this for initialization
 	void Start ()
@@ -122,6 +125,7 @@ public class Player : MonoBehaviour
 
         if (_lives < 1 )
         {
+            Instantiate(_explosionAnimation, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
