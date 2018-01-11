@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1297506}
   - component: {fileID: 1297507}
+  - component: {fileID: 1297508}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -186,6 +187,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &1297508
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1297505}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d771f3011314678449a15aacb2f5af54, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &52143818
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,8 +366,7 @@ MonoBehaviour:
     type: 2}
   _explosionAnimation: {fileID: 1897926143391284, guid: 3f1d0edff297d674192679c2d9e7648d,
     type: 2}
-  _shieldAnimation: {fileID: 1806846402548064, guid: e2ced6c595408da40abc8b986bdb71c3,
-    type: 2}
+  _shield: {fileID: 1297505}
   _fireRate: 0.25
   _speed: 5
   _lives: 3
@@ -754,3 +771,49 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f4cecf9e15b5ec34caf22553e72067ba, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1510998168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1510998170}
+  - component: {fileID: 1510998169}
+  m_Layer: 0
+  m_Name: Spawn_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1510998169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1510998168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56dc537a50119764e88b041f20734146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyShipPrefab: {fileID: 1632806677156252, guid: 01a48bd601e4dd34896a430ecb30afb8,
+    type: 2}
+  powerups:
+  - {fileID: 1964384743531118, guid: e9dc4ac979a1cfa4cbc877cabcfd367d, type: 2}
+  - {fileID: 1908443880683958, guid: f4cecf9e15b5ec34caf22553e72067ba, type: 2}
+  - {fileID: 1946443102226196, guid: 70cd2fee49749644aabdb23eb2b08409, type: 2}
+--- !u!4 &1510998170
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1510998168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.008278, y: 0.70970845, z: -0.140625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
