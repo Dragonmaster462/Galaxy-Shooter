@@ -28,9 +28,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
 
+    [SerializeField]
+    private GameObject[] _engines;
+
     private UIManager _uiManager;
     private GameManager _gameManager;
     private SpawnManager _spawnManager;
+    private AudioSource _audioSource;
+
+    private int hitCount = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -53,6 +59,9 @@ public class Player : MonoBehaviour
             _spawnManager.StartSpawnRoutines();
         }
 
+        _audioSource = GetComponent<AudioSource>();
+
+        hitCount = 0;
     }
 
     // Update is called once per frame
@@ -70,6 +79,7 @@ public class Player : MonoBehaviour
     {
         if (Time.time > _canFire)
         {
+            _audioSource.Play();
             if (canTripleShot)
             {
                 Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
@@ -150,11 +160,22 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+ 
+
         if (isShieldActive)
         {
             isShieldActive = false;
             _shield.SetActive(false);
             return;
+        }
+        hitCount++;
+        if (hitCount == 1)
+        {
+            _engines[0].SetActive(true);
+        }
+        else if (hitCount == 2)
+        {
+            _engines[1].SetActive(true);
         }
 
         _lives--;

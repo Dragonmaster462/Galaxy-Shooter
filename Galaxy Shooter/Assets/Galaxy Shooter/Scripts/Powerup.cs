@@ -9,6 +9,9 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     private int powerupID;  // 0 = tripleshot, 1 = speedboost, 2 = shields
 
+    [SerializeField]
+    private AudioClip _clip;
+
     // Update is called once per frame
     void Update ()
     {
@@ -45,7 +48,8 @@ public class Powerup : MonoBehaviour
                     player.ShieldPowerupOn();
                 }
             }
-            
+
+            AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position);
             Destroy(this.gameObject);
 
         }

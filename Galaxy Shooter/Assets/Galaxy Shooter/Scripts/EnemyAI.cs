@@ -10,6 +10,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private GameObject _enemyExplosionAnimation;
 
+    [SerializeField]
+    private AudioClip _clip;
     private UIManager _uiManager;
 
 	// Use this for initialization
@@ -43,6 +45,7 @@ public class EnemyAI : MonoBehaviour
             }
 
             Instantiate(_enemyExplosionAnimation, transform.position, Quaternion.identity);
+            AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position);
             Destroy(this.gameObject);
 
         }
@@ -57,6 +60,7 @@ public class EnemyAI : MonoBehaviour
 
             Instantiate(_enemyExplosionAnimation, transform.position, Quaternion.identity);
             _uiManager.UpdateScore();
+            AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position);
             Destroy(this.gameObject);
         }
     }
