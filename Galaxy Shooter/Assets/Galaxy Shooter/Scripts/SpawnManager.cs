@@ -11,6 +11,8 @@ public class SpawnManager : MonoBehaviour
 
     private float enemySpawnTimer = 5.0f;
 
+    private float powerupSpawnTimer = 5.0f;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -25,7 +27,7 @@ public class SpawnManager : MonoBehaviour
         while (true)
         {
             Instantiate(enemyShipPrefab, new Vector3(Random.Range(-7.97f, 7.97f), 6.07f, 0), Quaternion.identity);
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(enemySpawnTimer);
         }
     }
 
@@ -36,7 +38,7 @@ public class SpawnManager : MonoBehaviour
             int randomPowerup = Random.Range(0, 3);
 
             Instantiate(powerups[randomPowerup], new Vector3(Random.Range(-7.97f, 7.97f), 6.07f, 0), Quaternion.identity);
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(powerupSpawnTimer);
         }
     }
 }

@@ -28,12 +28,21 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
 
+    private UIManager _uiManager;
 
 	// Use this for initialization
 	void Start ()
     {
         transform.position = new Vector3(0, 0, 0);
-	}
+
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
+        if (_uiManager != null)
+        {
+            _uiManager.UpdateLives(_lives);
+        }
+
+    }
 
     // Update is called once per frame
     private void Update()
@@ -138,6 +147,7 @@ public class Player : MonoBehaviour
         }
 
         _lives--;
+        _uiManager.UpdateLives(_lives);
 
         if (_lives < 1 )
         {
