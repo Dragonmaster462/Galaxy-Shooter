@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     private int _lives = 3;
 
     private UIManager _uiManager;
+    private GameManager _gameManager;
+    private SpawnManager _spawnManager;
 
 	// Use this for initialization
 	void Start ()
@@ -40,6 +42,15 @@ public class Player : MonoBehaviour
         if (_uiManager != null)
         {
             _uiManager.UpdateLives(_lives);
+        }
+
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+
+        if (_spawnManager != null)
+        {
+            _spawnManager.StartSpawnRoutines();
         }
 
     }
@@ -152,6 +163,8 @@ public class Player : MonoBehaviour
         if (_lives < 1 )
         {
             Instantiate(_explosionAnimation, transform.position, Quaternion.identity);
+            _gameManager.gameOver = true;
+            _uiManager.ShowTitleScreen();
             Destroy(this.gameObject);
         }
     }

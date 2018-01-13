@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour
 	void Start ()
     {
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
     }
 	
 	// Update is called once per frame
